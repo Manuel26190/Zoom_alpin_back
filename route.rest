@@ -1,0 +1,6 @@
+### Récupérer tous les évents : 
+### get http://http://localhost:8000/api/events
+
+### Ajouter un évenement
+### post http://http://localhost:8000/api/add_event Accept: application/json 
+
