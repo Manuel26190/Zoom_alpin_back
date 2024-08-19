@@ -6,21 +6,21 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class User {
     private ?int $id = null;
-    private string $first_name;
-    private string $last_name;
+    private string $firstname;
+    private string $lastname;
     private string $email;
     private string $password;
 
     public function __construct(
         ?int $id,
-        string $first_name,
-        string $last_name,
+        string $firstname,
+        string $lastname,
         string $email,
         string $password
     ) {
         $this->id = $id;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
+        $this->firstname = $firstname;
+        $this->lastname = $lastname;
         $this->email = $email;
         $this->password = $password;
     }
@@ -31,10 +31,10 @@ class User {
         return $this->id;
     }
     public function getFirstName(): ?string {
-        return $this->first_name;
+        return $this->firstname;
     }
     public function getLastName(): ?string {
-        return $this->last_name;
+        return $this->lastname;
     }
     public function getEmail(): ?string {
         return $this->email;
@@ -46,11 +46,11 @@ class User {
     public function setId(int $id): void {
         $this->id = $id;
     }
-    public function setFirstName(string $first_name): void {
-        $this->first_name = $first_name;
+    public function setFirstName(string $firstname): void {
+        $this->firstname = $firstname;
     }
-    public function setLastName(string $last_name): void {
-        $this->last_name = $last_name;
+    public function setLastName(string $lastname): void {
+        $this->last_name = $lastname;
     }
     public function setEmail(string $email): void {
         $this->email = $email;

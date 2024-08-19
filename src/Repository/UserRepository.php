@@ -20,7 +20,7 @@ class UserRepository{
     // Méthode pour ajouter un utilisateur
     public function persistUser(User $user): void
     {
-        $query = $this->connexion->prepare('INSERT INTO users (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)');
+        $query = $this->connexion->prepare('INSERT INTO user (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)');
         $query->bindValue(':firstname', $user->getFirstName());
         $query->bindValue(':lastname', $user->getLastName());
         $query->bindValue(':email', $user->getEmail());
