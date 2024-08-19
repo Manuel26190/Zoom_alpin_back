@@ -15,11 +15,18 @@ class Event {
     private string $description;
 
     #[Assert\NotBlank]
-    private string $location;    
-    private string $image;
+    private string $location; 
+    
+    private string $zip_code;
+
+    private string $type;
+    private string $image;    
 
     #[Assert\NotBlank]
     private DateTimeImmutable $date_start;
+
+    #[Assert\NotBlank]
+    private DateTimeImmutable $postedat;
     
 
     public function __construct(
@@ -27,16 +34,22 @@ class Event {
         string $title, 
         string $description, 
         string $location, 
+        string $zip_code,
+        string $type,
         string $image, 
         DateTimeImmutable $date_start, 
+        DateTimeImmutable $postedat
     )
     {
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
         $this->location = $location;
+        $this->zip_code = $zip_code;
+        $this->type = $type;
         $this->image = $image;
         $this->date_start = $date_start;
+        $this->postedat = $postedat; 
         
     }
 
@@ -58,6 +71,14 @@ class Event {
     {
         return $this->location;
     }
+    public function getZipCode(): string
+    {
+        return $this->zip_code;
+    }
+    public function getType(): string
+    {
+        return $this->type;
+    }
     public function getImage(): string
     {
         return $this->image;
@@ -65,6 +86,10 @@ class Event {
     public function getDateStart(): DateTimeImmutable
     {
         return $this->date_start;
+    }
+    public function getPostedat(): DateTimeImmutable
+    {
+        return $this->postedat;
     }
 
     public function setId(int $id): void
@@ -83,6 +108,14 @@ class Event {
     {
         $this->location = $location;
     }
+    public function setZipCode(string $zip_code): void
+    {
+        $this->zip_code = $zip_code;
+    }
+    public function setType(string $type): void
+    {
+        $this->type = $type;
+    }
     public function setImage(string $image): void
     {
         $this->image = $image;
@@ -91,5 +124,9 @@ class Event {
     {
         $this->date_start = $date_start;
     }
+    public function setPostedAt(DateTimeImmutable $postedat): void
+        {
+            $this->postedat = $postedat;
+        }
 }
 

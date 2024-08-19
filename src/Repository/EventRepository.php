@@ -9,7 +9,7 @@ use PDO;
 class EventRepository {
     private PDO $connexion;
 
-    // Coonection a la Base de données
+    // Connection a la Base de données
     public function __construct(){
         $this->connexion = new PDO(        
         'mysql:host='.$_ENV['DATABASE_HOST'].';dbname='.$_ENV['DATABASE_NAME'].';port='.$_ENV['DATABASE_PORT'],
@@ -31,23 +31,29 @@ class EventRepository {
                 $event['title'], 
                 $event['description'], 
                 $event['location'], 
+                $event['zip_code'],
+                $event['type'],
                 $event['image'], 
-                new \DateTimeImmutable($event['date_start'])
+                new \DateTimeImmutable($event['date_start']),
+                new \DateTimeImmutable( $event['postedat'])
             );
-        }
+    }
         return $events;
     }
 
     // Methode pour ajouter un evenement
     public function persistEvent(Event $event): void {
-        $query = $this->connexion->prepare('INSERT INTO events (title, description, location, image, date_start) VALUES (:title, :description, :location, :image, :date_start)');
+        $query = $this->connexion->prepare('INSERT INTO events (title, description, location, zip_code, type, image, date_start, postedat) 
+        VALUES (:title, :description, :location, :zip_code, :type, :image, :date_start, CURDATE()');
         $query->bindValue(':title', $event->getTitle());
         $query->bindValue(':description', $event->getDescription());
         $query->bindValue(':location', $event->getLocation());
+        $query->bindValue(':zip_code', $event->getZipCode());
+        $query->bindValue(':type', $event->getType());
         $query->bindValue(':image', $event->getImage());
-        $query->bindValue(':date_start', $event->getDateStart()->format('Y-m-d H:i:s'));
+        $query->bindValue(':date_start', $event->getDateStart()->format('Y-m-d'));        
         $query->execute();
-        // Récupèration de l'id auto incrémenté pour l'assigner au chien qu'on vient de faire persister
+        // Récupèration de l'id auto incrémenté pour l'assigner à l'évènement que l'on vient de faire persister
         $event->setId($this->connexion->lastInsertId());
     }
 
