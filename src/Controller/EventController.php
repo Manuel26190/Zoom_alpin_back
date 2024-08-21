@@ -31,6 +31,7 @@ class EventController extends AbstractController{
     // Methode pour ajouter un evenement
     #[Route('/add_event', methods:['POST'])]
     public function addEvent(#[MapRequestPayload] Event $event): JsonResponse {
+        $event->setPostedat(new \DateTimeImmutable());
         $this->repo->persistEvent($event);
         return $this->json($event, 201);
     }

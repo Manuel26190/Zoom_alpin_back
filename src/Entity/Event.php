@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTimeImmutable;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class Event {
     private ?int $id;
@@ -24,10 +25,8 @@ class Event {
 
     #[Assert\NotBlank]
     private DateTimeImmutable $date_start;
-
-    #[Assert\NotBlank]
-    private DateTimeImmutable $postedat;
     
+    private ?DateTimeImmutable $postedat;    
 
     public function __construct(
         ?int $id = null, 
@@ -38,7 +37,7 @@ class Event {
         string $type,
         string $image, 
         DateTimeImmutable $date_start, 
-        DateTimeImmutable $postedat
+        ?DateTimeImmutable $postedat = null        
     )
     {
         $this->id = $id;
@@ -48,9 +47,8 @@ class Event {
         $this->zip_code = $zip_code;
         $this->type = $type;
         $this->image = $image;
-        $this->date_start = $date_start;
-        $this->postedat = $postedat; 
-        
+        $this->date_start = $date_start;  
+        $this->postedat = $postedat;      
     }
 
     // GETTERS & SETTERS
@@ -87,7 +85,7 @@ class Event {
     {
         return $this->date_start;
     }
-    public function getPostedat(): DateTimeImmutable
+    public function getPostedat(): ?DateTimeImmutable
     {
         return $this->postedat;
     }
@@ -124,9 +122,11 @@ class Event {
     {
         $this->date_start = $date_start;
     }
-    public function setPostedAt(DateTimeImmutable $postedat): void
+    public function setPostedAt(?DateTimeImmutable $postedat): static
         {
             $this->postedat = $postedat;
+
+            return $this;
         }
 }
 
