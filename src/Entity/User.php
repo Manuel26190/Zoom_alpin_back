@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class User {
+class User implements UserInterface, PasswordAuthenticatedUserInterface {
     private ?int $id = null;
     private string $firstname;
     private string $lastname;
@@ -41,6 +43,23 @@ class User {
     }
     public function getPassword(): ?string {
         return $this->password;
+    }
+    public function getRoles(): array
+    {
+        // Retourne un tableau de rôles (par exemple ['ROLE_USER'])
+        return ['ROLE_USER'];
+    }
+
+    public function eraseCredentials(): void
+    {
+        // Si vous stockez des informations sensibles temporairement dans l'entité,
+        // effacez-les ici (par exemple, $this->plainPassword = null)
+    }
+
+    public function getUserIdentifier(): string
+    {
+        // Retourne l'identifiant unique de l'utilisateur, par exemple l'email
+        return $this->email;
     }
 
     public function setId(int $id): void {
