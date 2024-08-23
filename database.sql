@@ -13,8 +13,8 @@ CREATE TABLE user (
     firstname varchar(255) DEFAULT NULL,
     lastname varchar(255) DEFAULT NULL,
     email varchar(255) UNIQUE DEFAULT NULL,
+    role ENUM('admin', 'user') NOT NULL DEFAULT 'user',
     password varchar(255) DEFAULT NULL,    
-    PRIMARY KEY (id)
 )
 
 CREATE TABLE events (
@@ -27,6 +27,8 @@ CREATE TABLE events (
     date_start datetime DEFAULT NULL,
     postedat datetime DEFAULT NULL,
     type ENUM('Réunion', 'Conférence', 'Exposition', 'Observation', 'Rencontre', 'Sortie nature'),
-    role ENUM('admin', 'user') NOT NULL DEFAULT 'user',
+    
     PRIMARY KEY (id)
 )
+
+ALTER TABLE user ADD COLUMN role ENUM('admin', 'user') NOT NULL DEFAULT 'user';

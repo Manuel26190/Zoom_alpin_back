@@ -6,12 +6,14 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class User implements UserInterface, PasswordAuthenticatedUserInterface {
+class User implements UserInterface  {
     private ?int $id = null;
     private string $firstname;
     private string $lastname;
     private string $email;
     private string $password;
+    
+    private $roles = [];
 
     public function __construct(
         ?int $id,
@@ -19,6 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
         string $lastname,
         string $email,
         string $password
+
     ) {
         $this->id = $id;
         $this->firstname = $firstname;
@@ -44,23 +47,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
     public function getPassword(): ?string {
         return $this->password;
     }
+
     public function getRoles(): array
-    {
-        // Retourne un tableau de rôles (par exemple ['ROLE_USER'])
-        return ['ROLE_USER'];
-    }
+        {
+                $roles = $this->roles;
+                // guarantee every user at least has ROLE_USER
+                $roles[] = 'ROLE_USER';
 
-    public function eraseCredentials(): void
-    {
-        // Si vous stockez des informations sensibles temporairement dans l'entité,
-        // effacez-les ici (par exemple, $this->plainPassword = null)
-    }
+                return array_unique($roles);
+        }
 
-    public function getUserIdentifier(): string
-    {
-        // Retourne l'identifiant unique de l'utilisateur, par exemple l'email
-        return $this->email;
-    }
+        public function setRoles(array $roles): self
+        {
+                $this->roles = $roles;
+
+                return $this;
+        }
+        public function eraseCredentials(): void
+        {
+            // implementation
+        }  
+        public function getUserIdentifier(): string
+        {
+            // implementation
+        }  
+
+   
 
     public function setId(int $id): void {
         $this->id = $id;
@@ -77,8 +89,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface {
     public function setPassword(string $password): void {
         $this->password = $password;
     }
-
-
-
 
 }
