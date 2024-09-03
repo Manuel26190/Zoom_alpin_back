@@ -9,12 +9,13 @@ DROP TABLE IF EXISTS events;
 
 
 CREATE TABLE user (
-    id int(11) NOT NULL AUTO_INCREMENT,
+    id int(11)NOT NULL AUTO_INCREMENT,
     firstname varchar(255) DEFAULT NULL,
     lastname varchar(255) DEFAULT NULL,
     email varchar(255) UNIQUE DEFAULT NULL,
     role ENUM('admin', 'user') NOT NULL DEFAULT 'user',
-    password varchar(255) DEFAULT NULL,    
+    password varchar(255) DEFAULT NULL,
+    PRIMARY KEY (id)    
 )
 
 CREATE TABLE events (
@@ -26,9 +27,9 @@ CREATE TABLE events (
     image varchar(255) DEFAULT NULL,
     date_start datetime DEFAULT NULL,
     postedat datetime DEFAULT NULL,
-    type ENUM('Réunion', 'Conférence', 'Exposition', 'Observation', 'Rencontre', 'Sortie nature'),
+    type ENUM('Réunion', 'Conférence', 'Exposition', 'Observation', 'Rencontre', 'Sortie nature'),   
+    PRIMARY KEY (id) 
     
-    PRIMARY KEY (id)
 )
 
 ALTER TABLE user ADD COLUMN role ENUM('admin', 'user') NOT NULL DEFAULT 'user';

@@ -6,7 +6,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class User implements UserInterface  {
+class User implements UserInterface, PasswordAuthenticatedUserInterface  {
     private ?int $id = null;
     private string $firstname;
     private string $lastname;
@@ -69,7 +69,7 @@ class User implements UserInterface  {
         }  
         public function getUserIdentifier(): string
         {
-            // implementation
+            return $this->email;
         }  
 
    

@@ -7,7 +7,7 @@ use DateTimeImmutable;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 class Event {
-    private ?int $id;
+    private ?int $id = null;
 
     #[Assert\NotBlank] // title ne peut pas être vide
     private string $title;
@@ -26,9 +26,10 @@ class Event {
     #[Assert\NotBlank]
     private DateTimeImmutable $date_start;
     
-    private ?DateTimeImmutable $postedat;    
+    private ?DateTimeImmutable $postedat = null;    
 
     public function __construct(
+        
         ?int $id = null, 
         string $title, 
         string $description, 
@@ -36,8 +37,10 @@ class Event {
         string $zip_code,
         string $type,
         string $image, 
-        DateTimeImmutable $date_start, 
-        ?DateTimeImmutable $postedat = null        
+        DateTimeImmutable $date_start,
+        ?DateTimeImmutable $postedat = null,
+         
+                
     )
     {
         $this->id = $id;

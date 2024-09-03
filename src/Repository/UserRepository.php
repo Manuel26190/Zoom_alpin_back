@@ -27,7 +27,7 @@ class UserRepository{
         $query->bindValue(':password', $user->getPassword());
         $query->execute();
         // Récupèration de l'id auto incrémenté pour l'assigner à l'user que l'on vient de faire persister
-        //$user->setId($this->connexion->lastInsertId());
+        $user->setId($this->connexion->lastInsertId());
     }
 
     // Methode pour se connecter

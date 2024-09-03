@@ -25,10 +25,10 @@ class UserController extends AbstractController{
     // Methode pour ajouter un user
     #[Route('/add_user', methods:['POST'])]
     
-    public function addUser(#[MapRequestPayload()] User $user,){   
+    public function addUser(#[MapRequestPayload] User $user,){   
         
         // Hacher le mot de passe avant de le sauvegarder
-        
+        //$hashedPassword = $hasher->hashPassword($user, $user->getPassword());
         $hashedPassword = $this->passwordHasher->hashPassword($user, $user->getPassword());
         $user->setPassword($hashedPassword);
         $this->repo->persistUser($user);

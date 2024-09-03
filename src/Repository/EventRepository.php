@@ -26,16 +26,17 @@ class EventRepository {
         $events = [];       
 
         foreach($result as $event) {
-            $events[] = new Event(
+            $events[] = new Event(                
                 $event['id'], 
                 $event['title'], 
                 $event['description'], 
                 $event['location'], 
                 $event['zip_code'],
                 $event['type'],
-                $event['image'], 
-                new \DateTimeImmutable($event['date_start']),
-                new \DateTimeImmutable( $event['postedat'])
+                $event['image'],  
+                new \DateTimeImmutable( $event['postedat']),
+                new \DateTimeImmutable($event['date_start']),               
+                
             );
     }
         return $events;
