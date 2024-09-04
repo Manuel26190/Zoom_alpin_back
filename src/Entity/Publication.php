@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use DateTimeImmutable;
+use Symfony\Component\Validator\Constraints as Assert;
 
-
-class Event {
+class Publication
+{
     private ?int $id = null;
 
     //#[Assert\NotBlank] // title ne peut pas être vide
@@ -26,7 +26,8 @@ class Event {
     //#[Assert\NotBlank]
     private ?DateTimeImmutable $date_start = null;
     
-    private ?DateTimeImmutable $postedat = null;    
+    private ?DateTimeImmutable $postedat = null;
+
 
     public function __construct(
         
@@ -38,8 +39,7 @@ class Event {
         ?string $type = null,
         ?string $image = null, 
         ?DateTimeImmutable $date_start = null,
-        ?DateTimeImmutable $postedat = null,
-         
+        ?DateTimeImmutable $postedat = null         
                 
     )
     {
@@ -50,7 +50,7 @@ class Event {
         $this->zip_code = $zip_code;
         $this->type = $type;
         $this->image = $image;
-        $this->date_start = $date_start;   
+        $this->date_start = $date_start;  
         $this->postedat = $postedat;      
     }
 
@@ -131,5 +131,11 @@ class Event {
 
             return $this;
         }
+
+
+
+
 }
+
+
 

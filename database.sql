@@ -6,6 +6,7 @@ CREATE DATABASE zoom_alpin;
 DROP TABLE IF EXISTS user;
 
 DROP TABLE IF EXISTS events;
+DROP TABLE IF EXISTS publications;
 
 
 CREATE TABLE user (
@@ -28,8 +29,20 @@ CREATE TABLE events (
     date_start datetime DEFAULT NULL,
     postedat datetime DEFAULT NULL,
     type ENUM('Réunion', 'Conférence', 'Exposition', 'Observation', 'Rencontre', 'Sortie nature'),   
-    PRIMARY KEY (id) 
-    
+    PRIMARY KEY (id)     
+)
+
+CREATE TABLE publications (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    title varchar(255) DEFAULT NULL,
+    description varchar(255) DEFAULT NULL,
+    location varchar(255) DEFAULT NULL,
+    zip_code varchar(255) DEFAULT NULL,    
+    image varchar(255) DEFAULT NULL,
+    date_start datetime DEFAULT NULL,
+    postedat datetime DEFAULT NULL,
+    type ENUM('Réunion', 'Conférence', 'Exposition', 'Observation', 'Rencontre', 'Sortie nature'),  
+    PRIMARY KEY (id)     
 )
 
 ALTER TABLE user ADD COLUMN role ENUM('admin', 'user') NOT NULL DEFAULT 'user';

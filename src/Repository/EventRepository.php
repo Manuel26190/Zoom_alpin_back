@@ -35,7 +35,7 @@ class EventRepository {
                 $event['type'],
                 $event['image'],  
                 new \DateTimeImmutable( $event['postedat']),
-                new \DateTimeImmutable($event['date_start']),               
+                new \DateTimeImmutable($event['date_start'])              
                 
             );
     }
