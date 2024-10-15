@@ -30,7 +30,19 @@ class UserRepository{
         $user->setId($this->connexion->lastInsertId());
     }
 
-    // Methode pour se connecter
+    // // Methode pour se connecter
+    // public function findUserByEmailAndPassword(string $email, string $password): ?User
+    // {
+    //     $query = $this->connexion->prepare('SELECT * FROM user WHERE email = :email AND password = :password');
+    //     $query->bindValue(':email', $email);
+    //     $query->bindValue(':password', $password);
+    //     $query->execute();
+    //     $user = $query->fetch(PDO::FETCH_ASSOC);
+    //     if ($user) {
+    //         return new User($user['id'], $user['firstname'], $user['lastname'], $user['email'], $user['password']);
+    //     }
+    //     return null;
+    // }
     
 
 
